@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Para el amor de mi vida">
+  <main
+    class="flex flex-col items-center justify-center absolute top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2"
+  >
+    <div class="flex flex-col items-center text-center">
+      <h1 class="text-white text-2xl mb-4">
+        Haz clic en el botón para descubrir cuánto te amo
+      </h1>
+      <button class="bg-white w-20 mb-4 rounded-xl text-4xl"> &hearts;</button>
+    </div>
+    <span
+      class="animate-bounce font-medium text-2xl text-white hidden text-center"
+      >Cargando...</span
+    >
+    <div id="card" class="rounded-lg bg-white p-4 hidden transition-opacity">
+      <p class="text-center font-bold">
+        Tanto amor no cabe en una página... &heartsuit;
+      </p>
+    </div>
+  </main>
+</Layout>
+
+<script type="module">
+  const div = document.querySelector("main div");
+  const button = document.querySelector("main button");
+  const span = document.querySelector("main span");
+  const card = document.querySelector("#card");
+  const p = document.querySelector("#card p");
+  const sound = new Audio("/cancion.mp3");
+
+  button.addEventListener("click", () => {
+    div.classList.add("hidden");
+    span.classList.remove("hidden");
+    setTimeout(() => {
+      span.textContent = "Cargando demasiada información...";
+    }, 6000);
+    setTimeout(() => {
+      span.textContent = "Calculando el resultado...";
+    }, 12000);
+    setTimeout(() => {
+      span.textContent = "Casi listo...";
+    }, 18000);
+    setTimeout(() => {
+      span.classList.remove("animate-bounce");
+      span.classList.remove("text-white");
+      span.classList.add("text-red-500");
+      span.classList.remove("text-2xl");
+      span.classList.add("text-5xl");
+      span.textContent = "ERROR.......";
+    }, 24000);
+    setTimeout(() => {
+      setTimeout(() => {
+        span.classList.add("animate-spin");
+      }, 2000);
+      span.textContent = "STATUS: 500 INTERNAL SERVER ERROR";
+    }, 30000);
+
+    setTimeout(() => {
+      sound.play();
+      span.classList.remove("animate-spin");
+      span.classList.add("hidden");
+      card.classList.remove("hidden");
+    }, 36000);
+
+    setTimeout(() => {
+      p.textContent = "Ni en este mundo";
+    }, 40000);
+
+    setTimeout(() => {
+      p.textContent = "Ni en otro";
+    }, 44000);
+    setTimeout(() => {
+      p.textContent =
+        "Mi amor por usted es tan grande como el universo, te amo y nunca dudes de eso!!";
+    }, 48000);
+  });
+</script>
